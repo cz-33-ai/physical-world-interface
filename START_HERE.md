@@ -11,33 +11,32 @@
 
 | **Project maintainer — what should I do?** | **New developer — can I try this?** |
 |---|---|
-| Follow the active task below: [#6 · Home Assistant](https://github.com/cz-33-ai/physical-world-interface/issues/6) | [5-minute zero-hardware Quick Start](QUICKSTART.md) |
+| Follow the active task below: [#8 · Sensor freshness and offline behavior](https://github.com/cz-33-ai/physical-world-interface/issues/8) | [5-minute zero-hardware Quick Start](QUICKSTART.md) |
 | [Review milestone roadmap](docs/roadmap.md) | [Explore the demo storyboard](docs/demos/prepare-for-sleep.md) |
 | [Open implementation issues](https://github.com/cz-33-ai/physical-world-interface/issues?q=is%3Aissue+is%3Aopen) | [How to contribute](CONTRIBUTING.md) |
 
-**Already available:** mock-device "Prepare for Sleep" simulation and six local tests. **Not yet built:** live physical action through Home Assistant or an external Agent.
+**Already available:** mock-device "Prepare for Sleep" simulation and six local tests; actual HAOS dashboard, MQTT-discovered Zigbee sensors, Reolink live camera and partial Midea robot-vacuum controls. **Not yet built:** PWI Gateway, agent-authorized action workflow or an always-on, recovery-tested physical-device hub. [Evidence](docs/04-home-assistant-real-device-integration.md).
 
 ---
 
 ## 🎯 NOW — The single next action
 
-### [#6 — M1.1: Install Home Assistant and open the dashboard](https://github.com/cz-33-ai/physical-world-interface/issues/6)
+### [#8 — M1.3: Verify state freshness, offline behavior and recovery](https://github.com/cz-33-ai/physical-world-interface/issues/8)
 
-**Why:** We already have a local MQTT + Zigbee + ESP32 baseline. The missing piece is a unified device hub.
+**Why:** On 17–18 November the lab actually booted HAOS on a shared Apple Silicon laptop, connected the existing MQTT/Zigbee2MQTT stack, showed live motion/light and temperature/humidity states, and added a camera plus a cloud robot-vacuum integration. The largest remaining M1 uncertainty is **freshness/reliability**, not whether HA can discover a sensor.
 
 **Exactly what to do next:**
 
-- [ ] **Choose the host** — a development Mac VM or an always-on machine. Note the chosen OS/installation method.
-- [ ] **Install Home Assistant** following the official guide for that host.
-- [ ] **Open the Home Assistant dashboard** from a browser.
-- [ ] **Record the result** — version, successful connection, errors and fixes (raw notes in the private lab, only sanitized summary here).
-- [ ] **Close [#6](https://github.com/cz-33-ai/physical-world-interface/issues/6)** after the documented acceptance criteria pass.
+- [x] **Initial setup** — HAOS browser dashboard confirmed using UTM/QEMU and ARM64 HAOS.
+- [x] **MQTT Discovery** — Zigbee bridge and two sensors appeared in HA.
+- [x] **Live sensor states** — occupancy transition and illuminance verified, temperature/humidity later user-confirmed.
+- [ ] **Freshness** — record report timestamps/intervals and verify a controlled sensor change across HA and MQTT within the same observation window.
+- [ ] **Offline behavior** — simulate disconnect and distinguish `unavailable` from a valid older reading.
+- [ ] **Recovery** — prove VM restart, fast-user-switch survival and/or a repeatable recovery procedure; preserve backups and encryption kit out of band.
 
-**Success looks like:** You can open Home Assistant in a browser and restart it predictably.
+**Acceptance:** Reported value, source, time, observed state change and failure/unknown conditions are distinguishable. Raw evidence belongs in the private lab; only the [sanitized experiment](docs/04-home-assistant-real-device-integration.md) is public.
 
-**Do not do yet:** Buy more smart devices, design the entire Agent gateway, or troubleshoot all sensors at once.
-
-> 💡 Always start with the active issue linked above. The checkboxes here are a quick view; **GitHub Issues are the source of truth** for actual progress. The NOW link is curated when a milestone is completed.
+> **Issue bookkeeping:** #6 (restart/reproducibility) and #7 (final evidence/configuration checks) may remain open until their exact acceptance criteria are confirmed. Do not mark them closed solely because the dashboard appeared once.
 
 ---
 
@@ -45,12 +44,12 @@
 
 | Order | Task | What you will prove | State |
 |:--:|---|---|:--:|
-| **1** | **[#6 · Home Assistant setup](https://github.com/cz-33-ai/physical-world-interface/issues/6)** | A working device dashboard | 🔵 **NOW** |
-| **2** | [#7 · Connect Mosquitto + Zigbee2MQTT](https://github.com/cz-33-ai/physical-world-interface/issues/7) | MQTT device integration works | ⚪ NEXT |
-| **3** | [#8 · Verify two Zigbee sensors](https://github.com/cz-33-ai/physical-world-interface/issues/8) | Real sensor updates and availability | ⚪ NEXT |
-| **4** | [#2 · ESPHome API vs MQTT](https://github.com/cz-33-ai/physical-world-interface/issues/2) | One tested integration choice | ⚪ QUEUED |
+| **1** | **[#8 · Sensor freshness/offline](https://github.com/cz-33-ai/physical-world-interface/issues/8)** | Repeatable readings and distinguishable failures | 🔵 **NOW** |
+| **2** | [#2 · ESPHome API vs MQTT](https://github.com/cz-33-ai/physical-world-interface/issues/2) | ESP32-C3 becomes a proper HA entity | ⚪ NEXT |
+| **3** | [#3 · Verified actuation](https://github.com/cz-33-ai/physical-world-interface/issues/3) | Request, dispatch, real-world result and failure reporting | ⚪ QUEUED |
+| **4** | [M1 host reliability](docs/roadmap.md) | No dependence on a foreground development laptop | ⚪ QUEUED |
 
-**The active milestone is [M1 — Unified Device Hub (#1)](https://github.com/cz-33-ai/physical-world-interface/issues/1).** Its subtasks are #6, #7 and #8.
+**M1 parent issue:** [#1 — Unified Device Hub](https://github.com/cz-33-ai/physical-world-interface/issues/1). Initial hub connectivity passed; exact M1 acceptance criteria still require offline/freshness and recovery evidence.
 
 ---
 
@@ -74,7 +73,7 @@ flowchart LR
 | Milestone | Goal | Status | Entry point |
 |---|---|---|---|
 | **M0 — Baseline** | MQTT, Zigbee, ESP32 communicate locally | ✅ Verified foundation | [Lab tutorials](docs/01-mqtt-broker-and-lan-test.md) |
-| **M1 — Device Hub** | Home Assistant sees existing devices | 🔵 **Current** | [#1](https://github.com/cz-33-ai/physical-world-interface/issues/1) |
+| **M1 — Device Hub** | Home Assistant sees existing devices | 🔵 **Initial hub verified; reliability pending** | [#1](https://github.com/cz-33-ai/physical-world-interface/issues/1) |
 | **M2 — Device Control** | Command an actuator and verify actual feedback | ⚪ Planned | [#3](https://github.com/cz-33-ai/physical-world-interface/issues/3) |
 | **M3 — Agent Operation** | “Prepare for Sleep” becomes a controlled workflow | ⚪ Planned | [#4](https://github.com/cz-33-ai/physical-world-interface/issues/4) |
 | **M4 — Context Handoff** | Supply physical observations and results upstream | ⚪ Planned | [#5](https://github.com/cz-33-ai/physical-world-interface/issues/5) |
@@ -104,8 +103,10 @@ These are **not** replacements for the active engineering task. They are release
 - ✅ Mosquitto MQTT broker and local publish/subscribe.
 - ✅ Zigbee2MQTT motion/illuminance telemetry.
 - ✅ ESP32-C3 connected through Wi-Fi/MQTT, including heartbeat and command test.
-- 🔎 Temperature/humidity sensor reporting timing still needs controlled verification.
-- ⬜ Home Assistant deployment, physical actuation and Agent control **not yet verified**.
+- ✅ Temperature/humidity values later observed live in HA; reporting timing/freshness still needs a controlled measurement.
+- ✅ HAOS UTM/QEMU initial boot, MQTT Discovery, Zigbee sensors and Reolink live camera demonstrated.
+- 🟡 Midea vacuum cloud device state/control interface partly tested; Locate Robot failed (not a verified action).
+- ⬜ HA service recovery, offline/freshness behavior, ESP32-as-HA-entity, PWI Gateway and agent control **not yet validated**.
 
 Avoid buying more equipment until the next milestone requires it.
 
