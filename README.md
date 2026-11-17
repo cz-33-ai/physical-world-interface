@@ -9,8 +9,8 @@ PWI is designed to let Personal Agents understand what physical devices can do, 
 
 > [!IMPORTANT]
 > **🎯 Building the project? Open [MISSION CONTROL →](START_HERE.md)**  
-> **NOW:** [#6 — Install Home Assistant and open its dashboard](https://github.com/cz-33-ai/physical-world-interface/issues/6).  
-> **NEXT:** [#7 — Connect MQTT + Zigbee2MQTT](https://github.com/cz-33-ai/physical-world-interface/issues/7) → [#8 — Verify sensor updates](https://github.com/cz-33-ai/physical-world-interface/issues/8).
+> **NOW:** [#8 — Verify sensor freshness and offline behavior](https://github.com/cz-33-ai/physical-world-interface/issues/8). Initial HAOS dashboard, MQTT Discovery, and live sensor readings were demonstrated; restart/recovery and offline acceptance checks remain.  
+> **EVIDENCE:** [Sanitized real-device Home Assistant integration report](docs/04-home-assistant-real-device-integration.md).
 
 | **🚀 TRY IT** | **🎬 FLAGSHIP DEMO** | **🗺️ ROADMAP** | **🤝 CONTRIBUTE** |
 |:---:|:---:|:---:|:---:|
@@ -58,7 +58,7 @@ flowchart TB
 - **PWI:** physical device identity/capabilities, state, authorized operation and execution evidence.
 - **Home Assistant and adapters:** first practical infrastructure for managing and accessing actual devices.
 
-Read the [high- and middle-level architecture](docs/architecture/pwi-overview.md). PWI builds on, but does not replace, the approved Personal Agent Platform architecture.
+Read the [high- and middle-level architecture](docs/architecture/pwi-overview.md). PWI builds on, but does not replace, the approved Personal Agent OS architecture.
 
 ## Try a working example today — no hardware required
 
@@ -85,7 +85,7 @@ python3 -m unittest discover -s tests -v
 
 ➡️ [**Step-by-step Quick Start and limitations**](QUICKSTART.md)
 
-**What is real already?** The existing lab validated local MQTT publish/subscribe, Zigbee2MQTT motion/illuminance telemetry, and ESP32-C3 Wi-Fi/MQTT communication. No Home Assistant deployment or multi-device physical actuation has been verified yet.
+**What is real already?** The lab verified an ARM64 Home Assistant OS deployment with MQTT/Zigbee2MQTT sensor Discovery and live state, a locally integrated Reolink camera with low-latency live preview, and partial cloud-based robot-vacuum state/control. The earlier ESP32-C3 Wi-Fi/MQTT experiment still lacks HA integration. No PWI Gateway or agent-controlled physical workflow has been implemented. See [Experiment 04](docs/04-home-assistant-real-device-integration.md).
 
 ## Our flagship reference demo
 
@@ -116,8 +116,8 @@ See the [**flagship demo storyboard, acceptance criteria and evidence plan**](do
 | Stage | Outcome | Status |
 |---|---|---|
 | **M0 — Local connectivity** | Mosquitto, Zigbee telemetry, ESP32 communication | ✅ Baseline validated |
-| **M1 — Unified device hub** | Home Assistant sees existing sensors | 🔵 Active: [#6](https://github.com/cz-33-ai/physical-world-interface/issues/6) |
-| **M2 — Physical control** | One actuator with trustworthy feedback | Planned: [#3](https://github.com/cz-33-ai/physical-world-interface/issues/3) |
+| **M1 — Unified device hub** | Home Assistant discovers and reads sensors | 🔵 Initial hub validated; availability/restart criteria open: [#8](https://github.com/cz-33-ai/physical-world-interface/issues/8) |
+| **M2 — Physical control** | One actuator with trustworthy feedback | Initial robot-vacuum control UI tested; action/result and failure-case acceptance still open: [#3](https://github.com/cz-33-ai/physical-world-interface/issues/3) |
 | **M3 — Agent action** | Prepare for Sleep across connected capabilities | Planned: [#4](https://github.com/cz-33-ai/physical-world-interface/issues/4) |
 | **M4 — Context handoff** | Evidence-rich observation/action events for the platform | Planned: [#5](https://github.com/cz-33-ai/physical-world-interface/issues/5) |
 | **M5 — Operations** | Security, tests, recovery, portability | Planned |
@@ -131,7 +131,7 @@ We want PWI to become a **developer education project**: a course where a learne
 | Get started | Build hardware | Integrate intelligence |
 |---|---|---|
 | Networking and MQTT | Zigbee and ESP32 | Device abstraction and Home Assistant |
-| [MQTT lab](docs/01-mqtt-broker-and-lan-test.md) | [ESP32 lab](docs/02-esp32c3-esphome-mqtt.md), [Zigbee lab](docs/03-zigbee2mqtt-sensor-observations.md) | Agent tools, state verification and context events (planned) |
+| [MQTT lab](docs/01-mqtt-broker-and-lan-test.md) | [ESP32 lab](docs/02-esp32c3-esphome-mqtt.md), [Zigbee lab](docs/03-zigbee2mqtt-sensor-observations.md) | [Real HA device-hub experiment](docs/04-home-assistant-real-device-integration.md); Agent/context integration planned |
 
 [Full course curriculum →](docs/course-plan.md)
 
