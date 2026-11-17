@@ -2,13 +2,15 @@
 
 > Planned work is **not** a claim of current implementation. Progress is recorded using issues with acceptance criteria and links to evidence.
 
-## Current baseline — already validated
+## Current baseline — verified in lab (18 November 2026)
 
-- Local Mosquitto publish/subscribe works.
-- Zigbee2MQTT reports motion/light sensor messages over MQTT.
-- ESP32-C3 running ESPHome connects to Wi-Fi/MQTT, publishes heartbeat and receives a command.
-- Temperature/humidity reporting timing remains an open diagnostic.
-- No verified end-to-end, multi-device physical actuation workflow yet.
+- Local Mosquitto publish/subscribe, Zigbee2MQTT and ESP32-C3 Wi-Fi/MQTT test baseline works.
+- **Home Assistant OS (ARM64, UTM/QEMU)** booted; browser dashboard reachable.
+- HA connected to the existing broker and automatically discovered two Zigbee sensor devices; motion/light state change and temperature/humidity live values user-confirmed.
+- A Reolink camera's local live stream works inside a custom HA dashboard; a slow Auto preview improved to near-zero perceived lag with Live mode.
+- Midea Auto Cloud exposed a robot-vacuum state/control UI; **Locate Robot command failed** and some attributes were Unknown. Do not claim all controls or mapping work.
+- **Not yet validated:** simultaneous MQTT/HA timestamp freshness, offline/unavailable semantics, VM cold-restart/auto-start, ESP32-C3 as HA entity, physical-outcome audit and PWI Gateway.
+- Public write-up: [Experiment 04 — HA device hub](04-home-assistant-real-device-integration.md).
 
 ## M0 — Foundation and project structure
 
@@ -23,17 +25,17 @@
 
 ## M1 — Unified device inventory and read-only perception
 
-- [ ] Deploy Home Assistant in a repeatable development environment.
-- [ ] Connect existing MQTT broker and Zigbee2MQTT.
-- [ ] Make Zigbee sensors visible with correct entity/area semantics.
+- [x] Deploy and access a development HAOS VM (initial startup verified; cold-restart and recovery still pending).
+- [x] Connect existing MQTT broker and Zigbee2MQTT; HA MQTT Discovery verified.
+- [x] Make both existing Zigbee sensor devices visible and observe their live state in HA.
 - [ ] Decide whether ESPHome uses MQTT or Native API for the prototype.
-- [ ] Record device availability, timestamps and state freshness.
+- [ ] Validate device offline/unavailable transitions and quantify state freshness/timestamps.
 
 **Exit:** read two device states through one consistent interface and demonstrate change propagation.
 
 ## M2 — Controlled actuation and feedback
 
-- [ ] Obtain one **confirmed** controllable actuator (e.g. lamp/LED strip/plug), recording exact hardware separately.
+- [ ] Establish a **repeatable, authorized actuation test** using available safe hardware (a robot-vacuum control was partially exercised; action result still needs verified feedback and failure handling).
 - [ ] Command on/off (and brightness if supported) through Home Assistant.
 - [ ] Distinguish command dispatch from confirmed state change.
 - [ ] Exercise offline/unavailable-device failure and timeout reporting.
@@ -52,7 +54,7 @@
 ## M4 — Physical-world context event handoff
 
 - [ ] Define normalized observation and action-outcome events.
-- [ ] Connect events to the **existing** Personal Agent Platform ingestion boundary.
+- [ ] Connect events to the **existing** Personal Agent OS ingestion boundary.
 - [ ] Preserve source, timestamps, confidence/uncertainty and valid state.
 - [ ] Demonstrate that physical events can inform later requests without duplicating a memory system inside PWI.
 
