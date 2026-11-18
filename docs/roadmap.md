@@ -65,7 +65,7 @@
 
 - [x] Create a manual post-migration HAOS backup and keep credentials out of Git (user-confirmed).
 - [ ] Verify off-VM recovery archive and Emergency Kit storage; test recovery restoration, not just backup creation.
-- [ ] Verify network isolation, least-privilege access and recovery after restart.
+- [ ] Verify network isolation, least-privilege access and **host-level** recovery after macOS restart, sleep, user switching and UTM USB passthrough; [#13](https://github.com/cz-33-ai/physical-world-interface/issues/13).
 - [ ] Add automated tests and CI checks for examples/contracts.
 - [ ] Keep services portable to an always-on host.
 
@@ -83,6 +83,7 @@ For each task, keep: **Goal → Design → Implementation → Evidence → Accep
 | Work item | GitHub Issue |
 |---|---|
 | M1: Home Assistant + Mosquitto + Zigbee2MQTT | [#1](https://github.com/cz-33-ai/physical-world-interface/issues/1) |
+| M5: M1 host recovery, USB persistence and backup | [#13](https://github.com/cz-33-ai/physical-world-interface/issues/13) |
 | M1 research: ESPHome Native API vs MQTT | [#2](https://github.com/cz-33-ai/physical-world-interface/issues/2) |
 | M2: First controllable actuator and feedback | [#3](https://github.com/cz-33-ai/physical-world-interface/issues/3) |
 | M3: Prepare for Sleep | [#4](https://github.com/cz-33-ai/physical-world-interface/issues/4) |
