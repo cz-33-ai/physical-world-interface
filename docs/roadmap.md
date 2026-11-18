@@ -6,11 +6,12 @@
 
 - Local Mosquitto publish/subscribe, Zigbee2MQTT and ESP32-C3 Wi-Fi/MQTT test baseline works.
 - **Home Assistant OS (ARM64, UTM/QEMU)** booted; browser dashboard reachable.
-- HA connected to the existing broker and automatically discovered two Zigbee sensor devices; motion/light state change and temperature/humidity live values user-confirmed.
+- HA discovered both existing Zigbee sensor devices; Mosquitto, Zigbee2MQTT and the USB coordinator were **migrated onto the M1 HAOS VM**, removing the M3 runtime dependency. Motion/light state changes and temperature/humidity live values were user-confirmed.
+- After a full **HAOS operating-system reboot**, Mosquitto and Zigbee2MQTT Apps automatically restarted and both sensors resumed reporting. A new manual post-migration HAOS backup was created (user-confirmed; off-VM copy and Emergency Kit storage not confirmed).
 - A Reolink camera's local live stream works inside a custom HA dashboard; a slow Auto preview improved to near-zero perceived lag with Live mode.
 - Midea Auto Cloud exposed a robot-vacuum state/control UI; **Locate Robot command failed** and some attributes were Unknown. Do not claim all controls or mapping work.
-- **Not yet validated:** simultaneous MQTT/HA timestamp freshness, offline/unavailable semantics, VM cold-restart/auto-start, ESP32-C3 as HA entity, physical-outcome audit and PWI Gateway.
-- Public write-up: [Experiment 04 — HA device hub](04-home-assistant-real-device-integration.md).
+- **Not yet validated:** simultaneous MQTT/HA timestamp freshness, offline/unavailable semantics, macOS host restart/sleep/user switching and unattended UTM startup, ESP32-C3 as HA entity, physical-outcome audit and PWI Gateway. A UTM cold start was not repeated in the 18 November migration session; do not confuse this with verified HAOS reboot.
+- Public write-ups: [Experiment 04 — initial cross-Mac device hub](04-home-assistant-real-device-integration.md) and [Experiment 05 — consolidated M1 HAOS recovery](05-m1-haos-consolidation-recovery.md).
 
 ## M0 — Foundation and project structure
 
@@ -25,8 +26,8 @@
 
 ## M1 — Unified device inventory and read-only perception
 
-- [x] Deploy and access a development HAOS VM (initial startup verified; cold-restart and recovery still pending).
-- [x] Connect existing MQTT broker and Zigbee2MQTT; HA MQTT Discovery verified.
+- [x] Deploy HAOS VM and verify **full HAOS OS reboot** restores Mosquitto, Zigbee2MQTT and both sensor readings (separate macOS/UTM unattended recovery still pending).
+- [x] Move Mosquitto, Zigbee2MQTT and coordinator into the M1 HAOS VM; reconfigure HA MQTT Integration, verify Discovery and M3 independence.
 - [x] Make both existing Zigbee sensor devices visible and observe their live state in HA.
 - [ ] Decide whether ESPHome uses MQTT or Native API for the prototype.
 - [ ] Validate device offline/unavailable transitions and quantify state freshness/timestamps.
@@ -62,7 +63,8 @@
 
 ## M5 — Reliability, security, portability
 
-- [ ] Standardize local configuration and backups, with credentials excluded.
+- [x] Create a manual post-migration HAOS backup and keep credentials out of Git (user-confirmed).
+- [ ] Verify off-VM recovery archive and Emergency Kit storage; test recovery restoration, not just backup creation.
 - [ ] Verify network isolation, least-privilege access and recovery after restart.
 - [ ] Add automated tests and CI checks for examples/contracts.
 - [ ] Keep services portable to an always-on host.
