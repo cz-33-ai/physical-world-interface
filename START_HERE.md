@@ -39,7 +39,7 @@
 
 **Acceptance:** Reported value, source, time, observed state change and failure/unknown conditions are distinguishable. Raw evidence belongs in the private lab; only the [sanitized experiment](docs/04-home-assistant-real-device-integration.md) is public.
 
-> **Issue bookkeeping:** #6 (restart/reproducibility) and #7 (final evidence/configuration checks) may remain open until their exact acceptance criteria are confirmed. Do not mark them closed solely because the dashboard appeared once.
+> **Issue bookkeeping:** **[#6](https://github.com/cz-33-ai/physical-world-interface/issues/6)** (HAOS installation) and **[#7](https://github.com/cz-33-ai/physical-world-interface/issues/7)** (MQTT/Zigbee2MQTT connectivity and Discovery) are **closed** against their original Definitions of done. **[#8](https://github.com/cz-33-ai/physical-world-interface/issues/8)** remains open for sensor freshness/offline tests. Independent macOS/UTM host recovery is tracked in **[#13](https://github.com/cz-33-ai/physical-world-interface/issues/13)**.
 
 ---
 
@@ -50,7 +50,7 @@
 | **1** | **[#8 · Sensor freshness/offline](https://github.com/cz-33-ai/physical-world-interface/issues/8)** | Repeatable readings and distinguishable failures | 🔵 **NOW** |
 | **2** | [#2 · ESPHome API vs MQTT](https://github.com/cz-33-ai/physical-world-interface/issues/2) | ESP32-C3 becomes a proper HA entity | ⚪ NEXT |
 | **3** | [#3 · Verified actuation](https://github.com/cz-33-ai/physical-world-interface/issues/3) | Request, dispatch, real-world result and failure reporting | ⚪ QUEUED |
-| **4** | [M1 host reliability](docs/roadmap.md) | No dependence on a foreground development laptop | ⚪ QUEUED |
+| **4** | [#13 · Host reliability & off-VM backup](https://github.com/cz-33-ai/physical-world-interface/issues/13) | Unattended Mac/UTM startup, sleep/USB recovery and independent backup | ⚪ QUEUED |
 
 **M1 parent issue:** [#1 — Unified Device Hub](https://github.com/cz-33-ai/physical-world-interface/issues/1). M1-only connectivity and HAOS reboot recovery passed; exact M1 acceptance still requires offline/freshness evidence and separate host persistence testing.
 
