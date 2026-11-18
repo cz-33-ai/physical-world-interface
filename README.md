@@ -9,8 +9,8 @@ PWI is designed to let Personal Agents understand what physical devices can do, 
 
 > [!IMPORTANT]
 > **🎯 Building the project? Open [MISSION CONTROL →](START_HERE.md)**  
-> **NOW:** [#8 — Verify sensor freshness and offline behavior](https://github.com/cz-33-ai/physical-world-interface/issues/8). Initial HAOS dashboard, MQTT Discovery, and live sensor readings were demonstrated; restart/recovery and offline acceptance checks remain.  
-> **EVIDENCE:** [Sanitized real-device Home Assistant integration report](docs/04-home-assistant-real-device-integration.md).
+> **NOW:** [#8 — Verify sensor freshness and offline behavior](https://github.com/cz-33-ai/physical-world-interface/issues/8). M1 HAOS now hosts Mosquitto, Zigbee2MQTT and the USB Zigbee coordinator, and recovered both sensors after an HAOS system reboot; freshness/offline acceptance remains.  
+> **EVIDENCE:** [Experiment 05 · Standalone M1 HAOS migration](docs/05-m1-haos-consolidation-recovery.md) and [Experiment 04 · Original cross-Mac integration](docs/04-home-assistant-real-device-integration.md).
 
 | **🚀 TRY IT** | **🎬 FLAGSHIP DEMO** | **🗺️ ROADMAP** | **🤝 CONTRIBUTE** |
 |:---:|:---:|:---:|:---:|
@@ -85,7 +85,7 @@ python3 -m unittest discover -s tests -v
 
 ➡️ [**Step-by-step Quick Start and limitations**](QUICKSTART.md)
 
-**What is real already?** The lab verified an ARM64 Home Assistant OS deployment with MQTT/Zigbee2MQTT sensor Discovery and live state, a locally integrated Reolink camera with low-latency live preview, and partial cloud-based robot-vacuum state/control. The earlier ESP32-C3 Wi-Fi/MQTT experiment still lacks HA integration. No PWI Gateway or agent-controlled physical workflow has been implemented. See [Experiment 04](docs/04-home-assistant-real-device-integration.md).
+**What is real already?** The lab verified an ARM64 Home Assistant OS deployment on M1; migrated Mosquitto, Zigbee2MQTT and the USB Zigbee coordinator onto that VM with **no M3 runtime dependency**; and demonstrated sensor telemetry recovering after a full HAOS operating-system reboot. Previously verified integrations include a locally integrated Reolink camera with low-latency live preview and partial cloud-based robot-vacuum state/control. The earlier ESP32-C3 Wi-Fi/MQTT experiment still lacks HA integration. No PWI Gateway or agent-controlled physical workflow has been implemented. See [Experiment 05](docs/05-m1-haos-consolidation-recovery.md) and [Experiment 04](docs/04-home-assistant-real-device-integration.md).
 
 ## Our flagship reference demo
 
@@ -116,7 +116,7 @@ See the [**flagship demo storyboard, acceptance criteria and evidence plan**](do
 | Stage | Outcome | Status |
 |---|---|---|
 | **M0 — Local connectivity** | Mosquitto, Zigbee telemetry, ESP32 communication | ✅ Baseline validated |
-| **M1 — Unified device hub** | Home Assistant discovers and reads sensors | 🔵 Initial hub validated; availability/restart criteria open: [#8](https://github.com/cz-33-ai/physical-world-interface/issues/8) |
+| **M1 — Unified device hub** | Home Assistant discovers and reads sensors | 🔵 M1 standalone services and HAOS reboot verified; freshness/offline and host resilience open: [#8](https://github.com/cz-33-ai/physical-world-interface/issues/8) |
 | **M2 — Physical control** | One actuator with trustworthy feedback | Initial robot-vacuum control UI tested; action/result and failure-case acceptance still open: [#3](https://github.com/cz-33-ai/physical-world-interface/issues/3) |
 | **M3 — Agent action** | Prepare for Sleep across connected capabilities | Planned: [#4](https://github.com/cz-33-ai/physical-world-interface/issues/4) |
 | **M4 — Context handoff** | Evidence-rich observation/action events for the platform | Planned: [#5](https://github.com/cz-33-ai/physical-world-interface/issues/5) |
@@ -131,7 +131,7 @@ We want PWI to become a **developer education project**: a course where a learne
 | Get started | Build hardware | Integrate intelligence |
 |---|---|---|
 | Networking and MQTT | Zigbee and ESP32 | Device abstraction and Home Assistant |
-| [MQTT lab](docs/01-mqtt-broker-and-lan-test.md) | [ESP32 lab](docs/02-esp32c3-esphome-mqtt.md), [Zigbee lab](docs/03-zigbee2mqtt-sensor-observations.md) | [Real HA device-hub experiment](docs/04-home-assistant-real-device-integration.md); Agent/context integration planned |
+| [MQTT lab](docs/01-mqtt-broker-and-lan-test.md) | [ESP32 lab](docs/02-esp32c3-esphome-mqtt.md), [Zigbee lab](docs/03-zigbee2mqtt-sensor-observations.md) | [HA device hub](docs/04-home-assistant-real-device-integration.md), [M1 consolidation](docs/05-m1-haos-consolidation-recovery.md); Agent/context integration planned |
 
 [Full course curriculum →](docs/course-plan.md)
 
