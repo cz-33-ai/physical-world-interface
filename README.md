@@ -116,7 +116,7 @@ See the [**flagship demo storyboard, acceptance criteria and evidence plan**](do
 | Stage | Outcome | Status |
 |---|---|---|
 | **M0 — Local connectivity** | Mosquitto, Zigbee telemetry, ESP32 communication | ✅ Baseline validated |
-| **M1 — Unified device hub** | Home Assistant discovers and reads sensors | 🔵 M1 standalone services and HAOS reboot verified; freshness/offline and host resilience open: [#8](https://github.com/cz-33-ai/physical-world-interface/issues/8) |
+| **M1 — Unified device hub** | Home Assistant discovers and reads sensors | 🔵 M1 standalone services and HAOS reboot verified; freshness/offline [#8](https://github.com/cz-33-ai/physical-world-interface/issues/8) and host resilience [#13](https://github.com/cz-33-ai/physical-world-interface/issues/13) open |
 | **M2 — Physical control** | One actuator with trustworthy feedback | Initial robot-vacuum control UI tested; action/result and failure-case acceptance still open: [#3](https://github.com/cz-33-ai/physical-world-interface/issues/3) |
 | **M3 — Agent action** | Prepare for Sleep across connected capabilities | Planned: [#4](https://github.com/cz-33-ai/physical-world-interface/issues/4) |
 | **M4 — Context handoff** | Evidence-rich observation/action events for the platform | Planned: [#5](https://github.com/cz-33-ai/physical-world-interface/issues/5) |
