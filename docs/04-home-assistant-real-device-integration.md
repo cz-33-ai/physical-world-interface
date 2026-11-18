@@ -1,5 +1,7 @@
 # Experiment 04 — Home Assistant unified device hub (real-device validation)
 
+> **Historical baseline:** This report describes the initial **cross-Mac** HA device-hub experiment. Since 18 November, Mosquitto, Zigbee2MQTT and the coordinator have moved into the M1 HAOS deployment; **HAOS-level reboot recovery was verified**. See **[Experiment 05 — M1 HAOS consolidation](05-m1-haos-consolidation-recovery.md)** for the current architecture and updated acceptance boundaries. The descriptions below retain the original experiment's status as-of its initial run.
+
 **Updated:** 18 November 2026 (SGT)  
 **Scope:** Sanitized report from a private home IoT laboratory. **Real Home Assistant hardware integration is demonstrated; PWI Gateway/agent control is not.**
 
